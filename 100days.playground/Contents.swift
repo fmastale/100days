@@ -51,6 +51,7 @@ if albumsIsSkreams(name: "Skream") {
     print("Dunno whoose alboum it is")
 }
 
+
 // Optionals
 func getHaterStatus(weather: String) -> String? {
     if weather == "sunny" {
@@ -202,3 +203,47 @@ taylor.describe()
 
 
 // Classes
+class Person2 {
+    var clothes: String
+    var shoes: String
+    
+    init(clothes: String, shoes: String) {
+        self.clothes = clothes
+        self.shoes = shoes
+    }
+}
+
+class Singer {
+    var name: String
+    var age: Int
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+    func sing() {
+        print("lalala")
+    }
+}
+
+class CountrySinger: Singer {
+    override func sing() {
+        print("Trucks, guitar and liquor")
+    }
+}
+
+var taylorS = Singer(name: "Taylor", age: 25)
+
+class HeavyMetalSinger: Singer {
+    var noise: Int
+    
+    init(name: String, age: Int, noise: Int) {
+        self.noise = noise
+        super.init(name: name, age: age)
+    }
+    
+    override func sing() {
+        print("grrrr rarght!")
+    }
+}
