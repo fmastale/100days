@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var score = 0
     
     var correctAnswer = 0
+    var questionsCounter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,16 +55,26 @@ class ViewController: UIViewController {
         if sender.tag == correctAnswer {
             title = "Correct"
             score += 1
+            questionsCounter += 1
         } else {
             title = "Wrong"
             score -= 1
+            questionsCounter += 1
         }
         
-        let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
+        if questionsCounter == 10 {
+            let ac = UIAlertController(title: title, message: "10 questions answered - your score is \(score)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: askQuestion))
+            present(ac, animated: true)
+            
+            score = 0
+            questionsCounter = 0
+        } else {
+            let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+            present(ac, animated: true)
+        }
         
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        
-        present(ac, animated: true)
     }
 }
 
