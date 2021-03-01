@@ -43,6 +43,9 @@ class ViewController: UIViewController {
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
         title = countries[correctAnswer].uppercased()
+        let currentScore = String(score)
+        
+        title = title! + " - your score is: \(currentScore)"
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
