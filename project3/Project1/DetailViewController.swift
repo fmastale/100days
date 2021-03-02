@@ -1,11 +1,3 @@
-//
-//  DetailViewController.swift
-//  Project1
-//
-//  Created by TwoStraws on 12/08/2016.
-//  Copyright © 2016 Paul Hudson. All rights reserved.
-//
-
 import UIKit
 
 class DetailViewController: UIViewController {
@@ -17,6 +9,9 @@ class DetailViewController: UIViewController {
 
 		title = selectedImage
         navigationItem.largeTitleDisplayMode = .never
+        
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
 
 		if let imageToLoad = selectedImage {
 			imageView.image  = UIImage(named: imageToLoad)
@@ -31,5 +26,17 @@ class DetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
+    }
+    
+    @objc func shareTapped() {
+        guard let image = imageView.image?.jpegData(compressionQuality: 0.8) else {
+            print("No image found")
+            return
+        }
+        
+        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        
+        present(vc, animated: true)
     }
 }

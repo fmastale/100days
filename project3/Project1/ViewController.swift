@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Project1
-//
-//  Created by TwoStraws on 11/08/2016.
-//  Copyright © 2016 Paul Hudson. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UITableViewController {

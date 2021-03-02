@@ -1,11 +1,3 @@
-//
-//  Project1UITests.swift
-//  Project1UITests
-//
-//  Created by Paul Hudson on 22/11/2018.
-//  Copyright © 2018 Paul Hudson. All rights reserved.
-//
-
 import XCTest
 
 class Project1UITests: XCTestCase {
