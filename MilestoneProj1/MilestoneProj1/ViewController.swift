@@ -32,10 +32,16 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Flag", for: indexPath)
-        
-        cell.textLabel?.text = uppercase(flags[indexPath.row].capitalized)
+        cell.textLabel?.text = uppercaseIfNeeded(flags[indexPath.row].capitalized)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Details") as? DetailViewController {
+            vc.selectedImage = flags[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 
@@ -46,7 +52,7 @@ extension String {
     }
 }
 
-private func uppercase(_ country: String) -> String {
+private func uppercaseIfNeeded(_ country: String) -> String {
     if country == "Uk" || country == "Us" {
         return country.uppercased()
     }
