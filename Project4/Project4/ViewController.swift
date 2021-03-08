@@ -79,10 +79,18 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 if host.contains(website) {
                     decisionHandler(.allow)
                     return
+                } else {
+                    let ac = UIAlertController(title: "Web blocked", message: "This web was blocked", preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: blockWebsite))
+                    present(ac, animated: true)
                 }
             }
         }
         decisionHandler(.cancel)
+    }
+    
+    func blockWebsite(action: UIAlertAction! = nil) {
+        
     }
 }
 
