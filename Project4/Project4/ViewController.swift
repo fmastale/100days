@@ -12,6 +12,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var progressView: UIProgressView!
     var websites = ["apple.com", "hackingwithswift.com"]
+    var blacklistedWebsites = ["hackingwithswift.com"]
     
     override func loadView() {
         webView = WKWebView()
@@ -71,6 +72,14 @@ class ViewController: UIViewController, WKNavigationDelegate {
         }
     }
     
+    func blockWebsite(action: UIAlertAction! = nil) {
+        
+    }
+    
+    func checkIfBlacklisted(_ website: String) -> Bool {
+        blacklistedWebsites.contains(website) ? true : false
+    }
+    
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         let url = navigationAction.request.url
         
@@ -78,19 +87,15 @@ class ViewController: UIViewController, WKNavigationDelegate {
             for website in websites {
                 if host.contains(website) {
                     decisionHandler(.allow)
+                    if checkIfBlacklisted(website){
+                        let ac = UIAlertController(title: "Web blocked", message: "This web was blocked", preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: blockWebsite))
+                        present(ac, animated: true)
+                    }
                     return
-                } else {
-                    let ac = UIAlertController(title: "Web blocked", message: "This web was blocked", preferredStyle: .alert)
-                    ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: blockWebsite))
-                    present(ac, animated: true)
                 }
             }
-        }
         decisionHandler(.cancel)
-    }
-    
-    func blockWebsite(action: UIAlertAction! = nil) {
-        
+        }
     }
 }
-
