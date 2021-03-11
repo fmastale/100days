@@ -61,10 +61,10 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
     }
     
-    private func submit(_ answer: String) {
+    func submit(_ answer: String) {
         let lowerAnswer = answer.lowercased()
         
-        if isPossible(word: answer) {
+        if isPossible(word: lowerAnswer) {
             if isOriginal(word: lowerAnswer) {
                 if isReal(word: lowerAnswer) {
                     if isTooShort(word: lowerAnswer) {
@@ -109,7 +109,12 @@ class ViewController: UITableViewController {
     }
     
     private func isOriginal(word: String) -> Bool {
-        return !usedWords.contains(word)
+        for usedWord in usedWords {
+            if usedWord.lowercased() == word {
+                return false
+            }
+        }
+        return true
     }
     
     private func isReal(word: String) -> Bool {
@@ -121,14 +126,14 @@ class ViewController: UITableViewController {
     }
     
     private func isTooShort(word: String) -> Bool {
-        return word.count > 3
+        return word.count > 0
     }
     
     private func isStartingWord(word: String) -> Bool {
         return word != startingWord
     }
     
-    private func showErrorMessage(errorTitle: String, errorMessage: String) {
+    func showErrorMessage(errorTitle: String, errorMessage: String) {
         let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
