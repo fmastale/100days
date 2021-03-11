@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UITableViewController {
     var allWords = [String]()
     var usedWords = [String]()
+    var startingWord: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +26,12 @@ class ViewController: UITableViewController {
             allWords = ["silkworm"]
         }
         
+        startingWord = allWords.randomElement()!
         startGame()
     }
 
     func startGame() {
-        title = allWords.randomElement()
+        title = startingWord
         usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()
     }
@@ -68,12 +70,22 @@ class ViewController: UITableViewController {
         if isPossible(word: answer) {
             if isOriginal(word: lowerAnswer) {
                 if isReal(word: lowerAnswer) {
-                    usedWords.insert(answer, at: 0)
-                    
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    tableView.insertRows(at: [indexPath], with: .automatic)
-                    
-                    return
+                    if isTooShort(word: lowerAnswer) {
+                        if isStartingWord(word: lowerAnswer) {
+                            usedWords.insert(answer, at: 0)
+                            
+                            let indexPath = IndexPath(row: 0, section: 0)
+                            tableView.insertRows(at: [indexPath], with: .automatic)
+                            
+                            return
+                        } else {
+                            errorTitle = "Word is same as starting word"
+                            errorMessage = "C'mon you can do better than that!"
+                        }
+                    } else {
+                        errorTitle = "Word is too short"
+                        errorMessage = "Word should be londer than 3 letters!"
+                    }
                 } else {
                     errorTitle = "Word not recognized"
                     errorMessage = "You can't just make them up, you know!"
@@ -118,6 +130,14 @@ class ViewController: UITableViewController {
         let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
         
         return misspelledRange.location == NSNotFound
+    }
+    
+    func isTooShort(word: String) -> Bool {
+        return word.count > 3
+    }
+    
+    func isStartingWord(word: String) -> Bool {
+        return word != startingWord
     }
     
 }
