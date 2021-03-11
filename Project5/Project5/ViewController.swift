@@ -61,11 +61,8 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
     }
     
-    func submit(_ answer: String) {
+    private func submit(_ answer: String) {
         let lowerAnswer = answer.lowercased()
-        
-        let errorTitle: String
-        let errorMessage: String
         
         if isPossible(word: answer) {
             if isOriginal(word: lowerAnswer) {
@@ -79,32 +76,23 @@ class ViewController: UITableViewController {
                             
                             return
                         } else {
-                            errorTitle = "Word is same as starting word"
-                            errorMessage = "C'mon you can do better than that!"
+                            showErrorMessage(errorTitle: "Word is same as starting word", errorMessage: "C'mon you can do better than that!")
                         }
                     } else {
-                        errorTitle = "Word is too short"
-                        errorMessage = "Word should be londer than 3 letters!"
+                        showErrorMessage(errorTitle: "Word is too short", errorMessage: "Word should be londer than 3 letters!")
                     }
                 } else {
-                    errorTitle = "Word not recognized"
-                    errorMessage = "You can't just make them up, you know!"
+                    showErrorMessage(errorTitle: "Word not recognized", errorMessage: "You can't just make them up, you know!")
                 }
             } else {
-                errorTitle = "Word already used"
-                errorMessage = "Be more original!"
+                showErrorMessage(errorTitle: "Word already used", errorMessage: "Be more original!")
             }
         } else {
-            errorTitle = "Word not possible"
-            errorMessage = "You can't spell that word from \(title!.lowercased())"
+            showErrorMessage(errorTitle: "Word not possible", errorMessage: "You can't spell that word from \(title!.lowercased())")
         }
-        
-        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
     }
     
-    func isPossible(word: String) -> Bool {
+    private func isPossible(word: String) -> Bool {
         guard var tempWord = title?.lowercased() else {
             return false
         }
@@ -120,11 +108,11 @@ class ViewController: UITableViewController {
         return true
     }
     
-    func isOriginal(word: String) -> Bool {
+    private func isOriginal(word: String) -> Bool {
         return !usedWords.contains(word)
     }
     
-    func isReal(word: String) -> Bool {
+    private func isReal(word: String) -> Bool {
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count)
         let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
@@ -132,12 +120,18 @@ class ViewController: UITableViewController {
         return misspelledRange.location == NSNotFound
     }
     
-    func isTooShort(word: String) -> Bool {
+    private func isTooShort(word: String) -> Bool {
         return word.count > 3
     }
     
-    func isStartingWord(word: String) -> Bool {
+    private func isStartingWord(word: String) -> Bool {
         return word != startingWord
+    }
+    
+    private func showErrorMessage(errorTitle: String, errorMessage: String) {
+        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
 }
