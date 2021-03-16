@@ -13,6 +13,8 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Grocery list"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addProduct))
     }
 
     func cleanList() {
@@ -26,5 +28,22 @@ class ViewController: UITableViewController {
         return cell
     }
 
+    @objc func addProduct() {
+        let ac = UIAlertController(title: "Enter product", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+        
+        let submitAction = UIAlertAction(title: "Add", style: .default) {
+            [weak self, weak ac] action in
+            guard let newProduct = ac?.textFields?[0].text else {return}
+            self?.submit(newProduct)
+        }
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    func submit(_ newProduct: String) {
+        
+    }
 }
 
