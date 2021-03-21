@@ -15,6 +15,8 @@ class ViewController: UITableViewController {
         
         let urlString: String
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(showCredits))
+        
         if navigationController?.tabBarItem.tag == 0 {
             urlString = "https://hackingwithswift.com/samples/petitions-1.json"
         } else {
@@ -62,5 +64,14 @@ class ViewController: UITableViewController {
         vc.detailItem = petitions[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @objc func showCredits() {
+        let ac = UIAlertController(title: "Credits", message: "Petitions were fetched from official White House API", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        
+        present(ac, animated: true)
+    }
+    
 }
 
