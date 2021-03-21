@@ -9,12 +9,14 @@ import UIKit
 
 class ViewController: UITableViewController {
     var  pictures = [String]()
+    let appName = "Storm Viewer"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Storm Viewer"
+        title = appName
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
         
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
@@ -49,6 +51,12 @@ class ViewController: UITableViewController {
             
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @objc func shareTapped() {
+        let items = [appName]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: [])
+        present(ac, animated: true)
     }
 }
 
