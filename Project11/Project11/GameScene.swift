@@ -48,4 +48,14 @@ class GameScene: SKScene {
         
         addChild(bouncer)
     }
+    
+    func makeSlot(at position: CGPoint, isGood: Bool) {
+        var slotBase: SKSpriteNode
+        
+        if isGood {
+            slotBase = SKSpriteNode(imageNamed: "slotBaseGood")
+        } else {
+            slotBase = SKSpriteNode(imageNamed: "slotBaseBad")
+        }
+    }
 }
