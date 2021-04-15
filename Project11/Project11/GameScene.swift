@@ -79,7 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
                 box.physicsBody?.isDynamic = false
-                addChild(box)
+                addChild(box )
             } else {
                 let ball = SKSpriteNode(imageNamed: "ballRed")
                 ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
