@@ -7,13 +7,10 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
-
-
 }
 
