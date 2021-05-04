@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6C7759242641C16300827D98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7759232641C16300827D98 /* AppDelegate.swift */; };
 		6C7759262641C16300827D98 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6C7759252641C16300827D98 /* GameScene.sks */; };
-		6C7759282641C16300827D98 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6C7759272641C16300827D98 /* Actions.sks */; };
 		6C77592A2641C16300827D98 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7759292641C16300827D98 /* GameScene.swift */; };
 		6C77592C2641C16300827D98 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C77592B2641C16300827D98 /* GameViewController.swift */; };
 		6C77592F2641C16300827D98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C77592D2641C16300827D98 /* Main.storyboard */; };
@@ -20,12 +19,13 @@
 		6C7759202641C16300827D98 /* Project14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project14.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C7759232641C16300827D98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C7759252641C16300827D98 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		6C7759272641C16300827D98 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		6C7759292641C16300827D98 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		6C77592B2641C16300827D98 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		6C77592E2641C16300827D98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6C7759302641C16300827D98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6C7759322641C16300827D98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C77593A2641C35600827D98 /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whack.caf; sourceTree = "<group>"; };
+		6C77593B2641C35600827D98 /* whackBad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whackBad.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +60,13 @@
 			children = (
 				6C7759232641C16300827D98 /* AppDelegate.swift */,
 				6C7759252641C16300827D98 /* GameScene.sks */,
-				6C7759272641C16300827D98 /* Actions.sks */,
 				6C7759292641C16300827D98 /* GameScene.swift */,
 				6C77592B2641C16300827D98 /* GameViewController.swift */,
 				6C77592D2641C16300827D98 /* Main.storyboard */,
 				6C7759302641C16300827D98 /* Assets.xcassets */,
 				6C7759322641C16300827D98 /* Info.plist */,
+				6C77593A2641C35600827D98 /* whack.caf */,
+				6C77593B2641C35600827D98 /* whackBad.caf */,
 			);
 			path = Project14;
 			sourceTree = "<group>";
@@ -130,7 +131,6 @@
 				6C77592F2641C16300827D98 /* Main.storyboard in Resources */,
 				6C7759262641C16300827D98 /* GameScene.sks in Resources */,
 				6C7759312641C16300827D98 /* Assets.xcassets in Resources */,
-				6C7759282641C16300827D98 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +292,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Filip-Mastalerz.Project14";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -311,7 +311,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Filip-Mastalerz.Project14";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
